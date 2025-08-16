@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import ReservationBanner from './reservationBanner';
+import ReservationTable from './reservationTable';
+import VisibilityControl from './visibilityControl';
 
-function App() {
+export default function App() {
+  const [showTable, setShowTable] = useState(true);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container my-4">
+      <ReservationBanner title="Canada Parks Reservations" />
+
+      <div className="mb-3">
+        <button className="btn">Add Reservation</button>
+        <button className="btn">Edit Reservation</button>
+        <button className="btn">Delete Reservation</button>
+      </div>
+
+      <VisibilityControl show={showTable} setShow={setShowTable} />
+
+      {showTable && <ReservationTable />}
     </div>
   );
 }
-
-export default App;
